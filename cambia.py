@@ -23,7 +23,16 @@ def parse_input_file(input_filename, verbose):
 
     return processed_parsed_data
 
-
+def write_output_file(output_filename, parsed_data, verbose):
+    working_dir = os.getcwd()
+    if not output_filename.startswith('/'):
+        output_filename = os.path.join(working_dir, output_filename)
+    output_file = Path(output_filename)
+    out_line = ",".join(parsed_data)
+    out_line += "\n"
+    with open(output_file, 'w+') as out_file:
+        out_file.write(out_line)
+    out_file.close()
 
 def main():
     input_file=""
@@ -43,6 +52,7 @@ def main():
     parsed_data.sort(reverse=True)
     if verbose:
         print(parsed_data)
+    write_output_file(output_file, parsed_data, verbose)
 
 if __name__ == '__main__':
     main()
