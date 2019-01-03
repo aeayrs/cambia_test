@@ -9,8 +9,12 @@ def parse_input_file(input_filename):
 
     input_file = Path(input_filename)
     if input_file.is_file():
-        print(input_filename, " exists")
-        parsed_data.append("found")
+        with open(input_filename, 'r') as in_file:
+            in_line = in_file.readline()
+        in_file.close()
+        print("in_line='%s'" % in_line)
+        parsed_data = in_line.rstrip().split(',')
+        parsed_data = [x.strip() for x in parsed_data]
     return parsed_data
 
 def main():
