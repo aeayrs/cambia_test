@@ -49,7 +49,7 @@ def main():
     if verbose:
         print(parsed_data)
 
-    parsed_data.sort(reverse=True)
+    parsed_data.sort(reverse=True, key=str.lower)
     if verbose:
         print(parsed_data)
     write_output_file(output_file, parsed_data, verbose)
